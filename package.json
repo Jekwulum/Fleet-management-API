@@ -1,0 +1,31 @@
+{
+  "name": "fleet_management_api",
+  "version": "1.0.0",
+  "description": "A fleet management API",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jekwulum/Fleet-management-Backend.git"
+  },
+  "author": "Charles Nwoye",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jekwulum/Fleet-management-Backend/issues"
+  },
+  "homepage": "https://github.com/Jekwulum/Fleet-management-Backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
