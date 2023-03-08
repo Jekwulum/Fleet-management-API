@@ -1,5 +1,7 @@
 const getVehicleByIDQuery = `SELECT * FROM vehicle where vehicle_id = $1`;
 
+const getVehicleByLicensePlateQuery = `SELECT * FROM vehicle where license_plate = $1`;
+
 const getVehiclesQuery = `SELECT * FROM vehicle`;
 
 const createVehicleQuery = `INSERT INTO 
@@ -8,4 +10,7 @@ const createVehicleQuery = `INSERT INTO
 
 const updateVehicleQuery = setter => `UPDATE vehicle ${setter} WHERE vehicle_id = $1 RETURNING *`;
 
-module.exports = { createVehicleQuery, getVehiclesQuery, getVehicleByIDQuery, updateVehicleQuery };
+module.exports = {
+  createVehicleQuery, getVehiclesQuery, getVehicleByIDQuery,
+  getVehicleByLicensePlateQuery, updateVehicleQuery
+};
