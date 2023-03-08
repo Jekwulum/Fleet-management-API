@@ -8,6 +8,9 @@ const driverRouter = require('./routes/driver.routes');
 const maintenanceRouter = require('./routes/maintenance.routes');
 const vehicleRouter = require('./routes/vehicle.routes');
 
+const path = require('path');
+global.appRoot = path.resolve(__dirname);
+global.appName = `Fleet Management API`;
 
 const app = express();
 

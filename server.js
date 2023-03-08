@@ -1,6 +1,8 @@
 require('dotenv').config();
 
-let appName = `Fleet Management API`;
+const path = require('path');
+global.appRoot = path.resolve(__dirname);
+global.appName = `Fleet Management API`;
 
 const app = require('./app');
 const port = process.env.PORT || 4000;

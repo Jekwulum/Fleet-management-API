@@ -1,0 +1,2 @@
+const fetchVehicles = `SELECT
+                            `
