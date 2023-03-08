@@ -12,4 +12,6 @@ router.post('/', VehicleController.createVehicle);
 
 router.patch('/:id', AppService.formatUpdateQuery, VehicleController.updateVehicle);
 
+router.delete('/:id', VehicleController.deleteVehicle);
+
 module.exports = router;
