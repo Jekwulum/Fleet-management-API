@@ -2,7 +2,7 @@ const PoolConnector = require('../middlewares/services/connector.service');
 const { databaseError } = require('../middlewares/helpers/responses/database.responses');
 const generateUUID = require('../middlewares/utils/generateUUID');
 const { getMaintenancesQuery, createMaintenanceQuery, getMaintenancesByLicensePlateQuery,
-  getMaintenanceByIDQuery, updateMaintenanceQuery } = require('../queries/maintenance');
+  getMaintenanceByIDQuery, updateMaintenanceQuery, deleteMaintenanceQuery } = require('../queries/maintenance');
 
 const MaintenanceController = {
   get: async (req, res) => {
@@ -61,6 +61,16 @@ const MaintenanceController = {
       res.status(200).json({ status: "SUCCESS", message: "Successfully updated maintenance data", data: results.rows[0] });
     });
   },
+
+  deleteMaintenance: async (req, res) => {
+    PoolConnector.query(deleteMaintenanceQuery, [req.params.id], async (err) => {
+      if (err) {
+        const response = databaseError(err);
+        return res.status(response.status).json({ status: response.type, message: response.message });
+      };
+      res.status(200).json({ status: "SUCCESS", message: "Successfully deleted maintenance data" });
+    });
+  }
 };
 
 module.exports = MaintenanceController;

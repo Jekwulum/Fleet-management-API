@@ -12,4 +12,6 @@ router.post('/', MaintenanceController.createMaintenance);
 
 router.patch('/:id', AppService.formatUpdateQuery, MaintenanceController.updateMaintenance);
 
+router.delete('/:id', MaintenanceController.deleteMaintenance);
+
 module.exports = router;

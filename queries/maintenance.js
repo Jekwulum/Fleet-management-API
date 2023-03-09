@@ -14,7 +14,9 @@ const createMaintenanceQuery = `INSERT INTO
 
 const updateMaintenanceQuery = setter => `UPDATE maintenance ${setter} WHERE maintenance_id = $1 RETURNING *`;
 
+const deleteMaintenanceQuery = `DELETE FROM maintenance WHERE maintenance_id = $1`;
+
 module.exports = {
   getMaintenancesQuery, createMaintenanceQuery, getMaintenancesByLicensePlateQuery,
-  getMaintenanceByIDQuery, updateMaintenanceQuery
+  getMaintenanceByIDQuery, updateMaintenanceQuery, deleteMaintenanceQuery
 };
