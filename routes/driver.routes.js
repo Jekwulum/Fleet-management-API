@@ -10,4 +10,6 @@ router.post('/', DriverController.createDriver);
 
 router.patch('/:id', AppService.formatUpdateQuery, DriverController.updateDriver);
 
+router.delete('/:id', DriverController.deleteDriver);
+
 module.exports = router;

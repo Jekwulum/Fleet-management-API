@@ -62,9 +62,8 @@ const VehicleController = {
   },
 
   deleteVehicle: async (req, res) => {
-    PoolConnector.query(deleteVehicleQuery, [req.params.id], async(err) => {
+    PoolConnector.query(deleteVehicleQuery, [req.params.id], async (err) => {
       if (err) {
-        console.log(err);
         const response = databaseError(err);
         return res.status(response.status).json({ status: response.type, message: response.message });
       };

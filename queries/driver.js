@@ -8,7 +8,9 @@ const createDriverQuery = `INSERT INTO
 
 const updateDriverQuery = setter => `UPDATE driver ${setter} WHERE driver_id = $1 RETURNING *`;
 
+const deleteDriverQuery = `DELETE FROM driver WHERE driver_id = $1`;
+
 module.exports = {
   getDriversQuery, getDriverByID, createDriverQuery,
-  updateDriverQuery
+  updateDriverQuery, deleteDriverQuery
 }
