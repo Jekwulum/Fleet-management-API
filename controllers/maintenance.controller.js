@@ -1,7 +1,7 @@
 const PoolConnector = require('../middlewares/services/connector.service');
 const { databaseError } = require('../middlewares/helpers/responses/database.responses');
 const generateUUID = require('../middlewares/utils/generateUUID');
-const { getMaintenancesQuery, createMaintenanceQuery } = require('../queries/maintenance');
+const { getMaintenancesQuery, createMaintenanceQuery, getMaintenanceByLicensePlateQuery } = require('../queries/maintenance');
 
 const MaintenanceController = {
   get: async (req, res) => {
@@ -12,6 +12,17 @@ const MaintenanceController = {
       };
       res.status(200).json({ message: "Successfully fetched maintenances data", data: results.rows, status: 'SUCCESS' });
     })
+  },
+
+  getMaintenanceByLicensePlate: async (req, res) => {
+    PoolConnector.query(getMaintenanceByLicensePlateQuery, [req.params.license_plate], async (err, results) => {
+      if (err) {
+        console.log(err);
+        const response = databaseError(err);
+        return res.status(response.status).json({ status: response.type, message: response.message });
+      };
+      res.status(200).json({ message: "Successfully fetched maintenance data", data: results.rows, status: 'SUCCESS' });
+    });
   },
 
   createMaintenance: async (req, res) => {

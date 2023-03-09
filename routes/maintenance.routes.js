@@ -4,6 +4,8 @@ const MaintenanceController = require('../controllers/maintenance.controller');
 
 router.get('/', MaintenanceController.get);
 
+router.get('/license-plate/:license_plate', MaintenanceController.getMaintenanceByLicensePlate);
+
 router.post('/', MaintenanceController.createMaintenance);
 
 module.exports = router;
