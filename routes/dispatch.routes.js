@@ -4,6 +4,8 @@ const DispatchController = require('../controllers/dispatch.controller');
 
 router.get('/', DispatchController.get);
 
+router.get('/email/:email', DispatchController.get);
+
 router.post('/', DispatchController.createDispatch);
 
 module.exports = router;
