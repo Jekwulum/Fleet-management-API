@@ -12,4 +12,6 @@ router.post('/', DispatchController.createDispatch);
 
 router.patch('/:id', AppService.formatUpdateQuery, DispatchController.updateDispatch);
 
+router.delete('/:id', DispatchController.deleteDispatch);
+
 module.exports = router;

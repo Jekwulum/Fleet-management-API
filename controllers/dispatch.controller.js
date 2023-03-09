@@ -2,7 +2,7 @@ const PoolConnector = require('../middlewares/services/connector.service');
 const { databaseError } = require('../middlewares/helpers/responses/database.responses');
 const generateUUID = require('../middlewares/utils/generateUUID');
 const { getDispatchesQuery, createDispatchQuery, getDispatchesByDriverEmailQuery,
-  getDispatchesByDriverPhoneQuery, updateDispatchQuery } = require('../queries/dispatch');
+  getDispatchesByDriverPhoneQuery, updateDispatchQuery, deleteDispatchQuery } = require('../queries/dispatch');
 
 const DispatchCOntroller = {
   get: async (req, res) => {
@@ -58,6 +58,16 @@ const DispatchCOntroller = {
       res.status(200).json({ status: "SUCCESS", message: "Successfully updated dispatch data", data: results.rows[0] });
     });
   },
+
+  deleteDispatch: async (req, res) => {
+    PoolConnector.query(deleteDispatchQuery, [req.params.id], async (err) => {
+      if (err) {
+        const response = databaseError(err);
+        return res.status(response.status).json({ status: response.type, message: response.message });
+      };
+      res.status(200).json({ status: "SUCCESS", message: "Successfully deleted dispatch data" });
+    });
+  }
 };
 
 module.exports = DispatchCOntroller;

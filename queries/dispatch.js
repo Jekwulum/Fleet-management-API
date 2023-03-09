@@ -27,7 +27,9 @@ const createDispatchQuery = `INSERT INTO
 
 const updateDispatchQuery = setter => `UPDATE dispatch ${setter} WHERE dispatch_id = $1 RETURNING *`;
 
+const deleteDispatchQuery = `DELETE FROM dispatch WHERE dispatch_id = $1`;
+
 module.exports = {
   getDispatchesQuery, createDispatchQuery, getDispatchesByDriverEmailQuery,
-  getDispatchesByDriverPhoneQuery, updateDispatchQuery
+  getDispatchesByDriverPhoneQuery, updateDispatchQuery, deleteDispatchQuery
 }
