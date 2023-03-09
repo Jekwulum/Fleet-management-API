@@ -25,7 +25,9 @@ const createDispatchQuery = `INSERT INTO
                               dispatch (dispatch_id, vehicle_id, driver_id)
                               values ($1, $2, $3) RETURNING *`;
 
+const updateDispatchQuery = setter => `UPDATE dispatch ${setter} WHERE dispatch_id = $1 RETURNING *`;
+
 module.exports = {
-  getDispatchesQuery, createDispatchQuery, getDispatchesByDriverEmailQuery, 
-  getDispatchesByDriverPhoneQuery
+  getDispatchesQuery, createDispatchQuery, getDispatchesByDriverEmailQuery,
+  getDispatchesByDriverPhoneQuery, updateDispatchQuery
 }

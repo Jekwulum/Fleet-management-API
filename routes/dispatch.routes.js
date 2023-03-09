@@ -10,4 +10,6 @@ router.get('/phone/:phone', DispatchController.getDispatchesByDriverPhone);
 
 router.post('/', DispatchController.createDispatch);
 
+router.patch('/:id', AppService.formatUpdateQuery, DispatchController.updateDispatch);
+
 module.exports = router;
