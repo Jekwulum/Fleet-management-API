@@ -4,4 +4,6 @@ const MaintenanceController = require('../controllers/maintenance.controller');
 
 router.get('/', MaintenanceController.get);
 
+router.post('/', MaintenanceController.createMaintenance);
+
 module.exports = router;
