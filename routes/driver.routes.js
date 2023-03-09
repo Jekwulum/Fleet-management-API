@@ -8,6 +8,8 @@ router.get('/:id', DriverController.getDriverByID);
 
 router.get('/email/:email', DriverController.getDriverByEmail);
 
+router.get('/phone/:phone', DriverController.getDriverByPhone);
+
 router.post('/', DriverController.createDriver);
 
 router.patch('/:id', AppService.formatUpdateQuery, DriverController.updateDriver);

@@ -35,6 +35,16 @@ const DriverController = {
     });
   },
 
+  getDriverByPhone: async (req, res) => {
+    PoolConnector.query(getDriverByPhoneQuery, [req.params.phone], async (err, results) => {
+      if (err) {
+        const response = databaseError(err);
+        return res.status(response.status).json({ status: response.type, message: response.message });
+      };
+      res.status(200).json({ message: "Successfully fetched driver data", data: results.rows[0], status: 'SUCCESS' });
+    });
+  },
+
   createDriver: async (req, res) => {
     const driver_id = generateUUID();
     const { first_name, last_name, email, phone } = req.body;
