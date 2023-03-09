@@ -1,7 +1,8 @@
 const PoolConnector = require('../middlewares/services/connector.service');
 const { databaseError } = require('../middlewares/helpers/responses/database.responses');
 const generateUUID = require('../middlewares/utils/generateUUID');
-const { getDispatchesQuery, createDispatchQuery, getDispatchesByDriverEmailQuery } = require('../queries/dispatch');
+const { getDispatchesQuery, createDispatchQuery, getDispatchesByDriverEmailQuery,
+  getDispatchesByDriverPhoneQuery } = require('../queries/dispatch');
 
 const DispatchCOntroller = {
   get: async (req, res) => {
@@ -16,6 +17,16 @@ const DispatchCOntroller = {
 
   getDispatchesByDriverEmail: async (req, res) => {
     PoolConnector.query(getDispatchesByDriverEmailQuery, [req.params.email], async (err, results) => {
+      if (err) {
+        const response = databaseError(err);
+        return res.status(response.status).json({ status: response.type, message: response.message });
+      };
+      res.status(200).json({ message: "Successfully fetched dispatch data", data: results.rows, status: 'SUCCESS' });
+    });
+  },
+
+  getDispatchesByDriverPhone: async (req, res) => {
+    PoolConnector.query(getDispatchesByDriverPhoneQuery, [req.params.phone], async (err, results) => {
       if (err) {
         const response = databaseError(err);
         return res.status(response.status).json({ status: response.type, message: response.message });
