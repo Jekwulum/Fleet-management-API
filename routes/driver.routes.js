@@ -8,4 +8,6 @@ router.get('/:id', DriverController.getDriverByID);
 
 router.post('/', DriverController.createDriver);
 
+router.patch('/:id', AppService.formatUpdateQuery, DriverController.updateDriver);
+
 module.exports = router;

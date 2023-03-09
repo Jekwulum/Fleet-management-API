@@ -54,11 +54,10 @@ const VehicleController = {
   updateVehicle: async (req, res) => {
     PoolConnector.query(updateVehicleQuery(res.locals.query), [req.params.id], async (err, results) => {
       if (err) {
-        console.log(err);
         const response = databaseError(err);
         return res.status(response.status).json({ status: response.type, message: response.message });
       };
-      res.status(200).json({ status: "SUCCESS", message: "Successfully updated vehicle", data: results.rows[0] });
+      res.status(200).json({ status: "SUCCESS", message: "Successfully updated vehicle data", data: results.rows[0] });
     });
   },
 
@@ -69,7 +68,7 @@ const VehicleController = {
         const response = databaseError(err);
         return res.status(response.status).json({ status: response.type, message: response.message });
       };
-      res.status(200).json({ status: "SUCCESS", message: "Successfully deleted vehicle" });
+      res.status(200).json({ status: "SUCCESS", message: "Successfully deleted vehicle data" });
     });
   }
 };
