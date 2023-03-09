@@ -4,6 +4,7 @@ const cors = require('cors');
 const express = require('express');
 const morgan = require('morgan');
 
+const dispatchRouter = require('./routes/dispatch.routes');
 const driverRouter = require('./routes/driver.routes');
 const maintenanceRouter = require('./routes/maintenance.routes');
 const vehicleRouter = require('./routes/vehicle.routes');
@@ -29,6 +30,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json({ limit: "50mb" }));
 
 app.get("/", (req, res) => res.status(200).json({ message: "working" }));
+app.use('/api/dispatch', dispatchRouter);
 app.use('/api/driver', driverRouter);
 app.use('/api/maintenance', maintenanceRouter);
 app.use('/api/vehicle', vehicleRouter);
