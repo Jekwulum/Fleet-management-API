@@ -4,6 +4,8 @@ const DispatchController = require('../controllers/dispatch.controller');
 
 router.get('/', DispatchController.get);
 
+router.get('/:id', DispatchController.getDispatchesByID);
+
 router.get('/email/:email', DispatchController.getDispatchesByDriverEmail);
 
 router.get('/phone/:phone', DispatchController.getDispatchesByDriverPhone);
