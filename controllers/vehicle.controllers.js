@@ -11,7 +11,7 @@ const VehicleController = {
         const response = databaseError(err);
         return res.status(response.status).json({ status: response.type, message: response.message });
       };
-      res.status(200).json({ message: "Successfully fetched vehicles", data: results.rows, status: 'SUCCESS' });
+      res.status(200).json({ message: "Successfully fetched vehicles data", data: results.rows, status: 'SUCCESS' });
     });
   },
 
