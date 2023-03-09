@@ -1,6 +1,6 @@
-const getVehicleByIDQuery = `SELECT * FROM vehicle where vehicle_id = $1`;
+const getVehicleByIDQuery = `SELECT * FROM vehicle WHERE vehicle_id = $1`;
 
-const getVehicleByLicensePlateQuery = `SELECT * FROM vehicle where license_plate = $1`;
+const getVehicleByLicensePlateQuery = `SELECT * FROM vehicle WHERE license_plate = $1`;
 
 const getVehiclesQuery = `SELECT * FROM vehicle`;
 
