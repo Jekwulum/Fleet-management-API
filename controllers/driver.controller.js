@@ -1,7 +1,7 @@
 const PoolConnector = require('../middlewares/services/connector.service');
 const { databaseError } = require('../middlewares/helpers/responses/database.responses');
 const generateUUID = require('../middlewares/utils/generateUUID');
-const { getDriversQuery, getDriverByID } = require('../queries/driver')
+const { getDriversQuery, getDriverByID, createDriverQuery } = require('../queries/driver')
 
 const DriverController = {
   get: async (req, res) => {
@@ -24,7 +24,19 @@ const DriverController = {
     });
   },
 
-  createDriver: async (req, res) => {}
+  createDriver: async (req, res) => {
+    const driver_id = generateUUID();
+    const { first_name, last_name, email, phone } = req.body;
+    const is_active = req.body.is_active ? true : false;
+
+    PoolConnector.query(createDriverQuery, [driver_id, first_name, last_name, email, phone, is_active], async (err, results) => {
+      if (err) {
+        const response = databaseError(err);
+        return res.status(response.status).json({ status: response.type, message: response.message });
+      };
+      res.status(200).json({ message: "Successfully added driver", data: results.rows[0], status: 'SUCCESS' });
+    });
+  }
 };
 
 module.exports = DriverController;
