@@ -10,4 +10,6 @@ router.get('/license-plate/:license_plate', MaintenanceController.getMaintenance
 
 router.post('/', MaintenanceController.createMaintenance);
 
+router.patch('/:id', AppService.formatUpdateQuery, MaintenanceController.updateMaintenance);
+
 module.exports = router;

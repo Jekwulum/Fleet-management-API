@@ -2,7 +2,7 @@ const PoolConnector = require('../middlewares/services/connector.service');
 const { databaseError } = require('../middlewares/helpers/responses/database.responses');
 const generateUUID = require('../middlewares/utils/generateUUID');
 const { getMaintenancesQuery, createMaintenanceQuery, getMaintenancesByLicensePlateQuery,
-  getMaintenanceByIDQuery } = require('../queries/maintenance');
+  getMaintenanceByIDQuery, updateMaintenanceQuery } = require('../queries/maintenance');
 
 const MaintenanceController = {
   get: async (req, res) => {
@@ -28,7 +28,6 @@ const MaintenanceController = {
   getMaintenanceByLicensePlate: async (req, res) => {
     PoolConnector.query(getMaintenancesByLicensePlateQuery, [req.params.license_plate], async (err, results) => {
       if (err) {
-        console.log(err);
         const response = databaseError(err);
         return res.status(response.status).json({ status: response.type, message: response.message });
       };
@@ -47,6 +46,19 @@ const MaintenanceController = {
         return res.status(response.status).json({ status: response.type, message: response.message });
       };
       res.status(200).json({ message: "Successfully added maintenance data", data: results.rows[0], status: 'SUCCESS' });
+    });
+  },
+
+  updateMaintenance: async (req, res) => {
+    console.log(res.locals.query);
+    console.log('-------------')
+    PoolConnector.query(updateMaintenanceQuery(res.locals.query), [req.params.id], async (err, results) => {
+      if (err) {
+        console.log(err);
+        const response = databaseError(err);
+        return res.status(response.status).json({ status: response.type, message: response.message });
+      };
+      res.status(200).json({ status: "SUCCESS", message: "Successfully updated maintenance data", data: results.rows[0] });
     });
   },
 };
