@@ -18,7 +18,9 @@ const getTripsByDriverPhoneQuery = `SELECT
                           INNER JOIN driver DR ON T.driver_id = DR.driver_id
                           WHERE DR.phone = $1`;
 
+const updateTripQuery = setter => `UPDATE trips ${setter} WHERE trip_id = $1 RETURNING *`;
+
 module.exports = {
   getTripsQuery, getTripByIDQuery, createTripQuery,
-  getTripsByDriverEmailQuery, getTripsByDriverPhoneQuery
+  getTripsByDriverEmailQuery, getTripsByDriverPhoneQuery, updateTripQuery
 };
