@@ -20,7 +20,10 @@ const getTripsByDriverPhoneQuery = `SELECT
 
 const updateTripQuery = setter => `UPDATE trips ${setter} WHERE trip_id = $1 RETURNING *`;
 
+const deleteTripQuery = `DELETE FROM trips WHERE trip_id = $1`;
+
 module.exports = {
   getTripsQuery, getTripByIDQuery, createTripQuery,
-  getTripsByDriverEmailQuery, getTripsByDriverPhoneQuery, updateTripQuery
+  getTripsByDriverEmailQuery, getTripsByDriverPhoneQuery, updateTripQuery,
+  deleteTripQuery
 };

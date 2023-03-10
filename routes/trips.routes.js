@@ -14,4 +14,6 @@ router.post('/', TripController.createTrip);
 
 router.patch('/:id', AppService.formatUpdateQuery, TripController.updateTrip);
 
+router.delete('/:id', TripController.deleteTrip);
+
 module.exports = router;
