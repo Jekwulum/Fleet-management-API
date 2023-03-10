@@ -27,7 +27,7 @@ const TripController = {
   createTrip: async (req, res) => {
     const trip_id = generateUUID();
     const { vehicle_id, driver_id, start_location, end_location, distance } = req.body;
-    const trip_date = new Date(req.body.trip_date);
+    const trip_date = req.body.trip_date ? new Date(req.body.trip_date) : new Date();
 
     PoolConnector.query(createTripQuery, [trip_id, vehicle_id, driver_id, start_location, end_location, distance, trip_date], async (err, results) => {
       if (err) {
