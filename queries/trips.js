@@ -7,12 +7,18 @@ const createTripQuery = `INSERT INTO
                           values ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
 
 const getTripsByDriverEmailQuery = `SELECT 
-                                      T.*, DR.email, DR.first_name, DR.last_name
-                                      FROM trips T
-                                      INNER JOIN driver DR ON T.driver_id = DR.driver_id
-                                      WHERE DR.email = $1`;
+                          T.*, DR.first_name, DR.last_name, DR.phone, DR.email
+                          FROM trips T
+                          INNER JOIN driver DR ON T.driver_id = DR.driver_id
+                          WHERE DR.email = $1`;
+
+const getTripsByDriverPhoneQuery = `SELECT 
+                          T.*, DR.first_name, DR.last_name, DR.phone, DR.email
+                          FROM trips T
+                          INNER JOIN driver DR ON T.driver_id = DR.driver_id
+                          WHERE DR.phone = $1`;
 
 module.exports = {
   getTripsQuery, getTripByIDQuery, createTripQuery,
-  getTripsByDriverEmailQuery
+  getTripsByDriverEmailQuery, getTripsByDriverPhoneQuery
 };
