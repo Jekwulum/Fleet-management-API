@@ -8,6 +8,7 @@ const dispatchRouter = require('./routes/dispatch.routes');
 const driverRouter = require('./routes/driver.routes');
 const maintenanceRouter = require('./routes/maintenance.routes');
 const vehicleRouter = require('./routes/vehicle.routes');
+const tripRouter = require('./routes/trips.routes');
 
 const path = require('path');
 global.appRoot = path.resolve(__dirname);
@@ -34,5 +35,6 @@ app.use('/api/dispatch', dispatchRouter);
 app.use('/api/driver', driverRouter);
 app.use('/api/maintenance', maintenanceRouter);
 app.use('/api/vehicle', vehicleRouter);
+app.use('/api/trip', tripRouter);
 
 module.exports = app;
