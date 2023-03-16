@@ -1,5 +1,5 @@
 const getDispatchesQuery = `SELECT 
-                              DI.dispatch_id, DI.vehicle_id, V.model, 
+                              DI.dispatch_id, DI.vehicle_id, V.model, V.license_plate, 
                               DR.driver_id, DR.first_name, DR.last_name, DR.phone, Dr.email
                               FROM dispatch DI 
                               INNER JOIN vehicle V ON DI.vehicle_id = V.vehicle_id
